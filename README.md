@@ -1,5 +1,7 @@
 # 💅 Style DNA Quiz + Capsule Wardrobe Generator
 
+Try Here : https://divyanshi120.github.io/Style-Quiz/
+
 A fun, visual personality quiz built using HTML, Tailwind CSS, and JavaScript - designed to help users discover their fashion style and receive a curated capsule wardrobe suggestion based on their results.
 
 > 🎯 Perfect for fashion beginners, personal style discovery, or as a lightweight UX design + frontend portfolio project.
