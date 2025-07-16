@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Style DNA Quiz</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-pink-50 min-h-screen flex flex-col items-center justify-center p-6">
+  <div class="bg-white p-6 rounded-xl shadow-xl w-full max-w-md">
+    <h1 class="text-2xl font-bold text-center mb-4">✨ Style DNA Quiz ✨</h1>
+
+    <div id="quiz" class="space-y-4"></div>
+
+    <button onclick="showResult()" class="mt-6 w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded">
+      Reveal My Style!
+    </button>
+
+    <div id="result" class="mt-6 text-center font-semibold text-lg text-purple-800 hidden"></div>
+  </div>
+
+  <script>
+    const questions = [
+      "Pick your weekend vibe:",
+      "What color do you reach for most?",
+      "Your ideal outfit?",
+    ];
+
+    const answers = [
+      ["Netflix & chill", "Café hopping", "Street photoshoot"],
+      ["Black/Neutrals", "Beige/Pastels", "Bright/Printed"],
+      ["Oversized tee + jeans", "Kurta set", "Crop top + flared pants"]
+    ];
+
+    const quizContainer = document.getElementById("quiz");
+    const userAnswers = [];
+
+    questions.forEach((q, i) => {
+      const qBlock = document.createElement("div");
+      qBlock.innerHTML = `<p class="font-semibold">${q}</p>` + answers[i].map((a, j) =>
+        `<label class="block mt-1">
+          <input type="radio" name="q${i}" value="${a}" class="mr-2" onchange="saveAnswer(${i}, '${a}')"/>
+          ${a}
+        </label>`
+      ).join("");
+      quizContainer.appendChild(qBlock);
+    });
+
+    function saveAnswer(qIndex, answer) {
+      userAnswers[qIndex] = answer;
+    }
+
+    function showResult() {
+      if (userAnswers.length < questions.length) {
+        alert("Answer all questions to see your style!");
+        return;
+      }
+
+      let result = "";
+      if (userAnswers.includes("Kurta set") || userAnswers.includes("Beige/Pastels")) {
+        result = "🌸 Soft Ethnic Minimalist-Your style is graceful, earthy, and timeless.";
+      } else if (userAnswers.includes("Crop top + flared pants") || userAnswers.includes("Bright/Printed")) {
+        result = "🎯 Bold Trendsetter-You experiment, shine, and own your individuality.";
+      } else {
+        result = "🧢 Chill & Casual-Comfort meets confidence. You're effortlessly cool.";
+      }
+
+      document.getElementById("result").innerHTML = `
+  <p class="mb-4">${result}</p>
+  <div class="bg-purple-100 p-4 rounded-lg text-left">
+    <p class="font-semibold underline mb-2">Suggested Capsule Wardrobe:</p>
+    <ul class="list-disc ml-5 space-y-1">
+      ${
+        result.includes("Soft Ethnic") ? `
+          <li>White cotton kurta</li>
+          <li>Beige palazzos</li>
+          <li>Statement dupatta</li>
+          <li>Kolhapuri sandals</li>
+          <li>Gold jhumkas</li>
+        ` : result.includes("Bold Trendsetter") ? `
+          <li>Graphic crop top</li>
+          <li>Flared printed trousers</li>
+          <li>Chunky sneakers</li>
+          <li>Layered chains</li>
+          <li>Oversized sunglasses</li>
+        ` : `
+          <li>Oversized t-shirt</li>
+          <li>Relaxed fit jeans</li>
+          <li>White sneakers</li>
+          <li>Denim jacket</li>
+          <li>Tote bag</li>
+        `
+      }
+    </ul>
+  </div>
+`;
+
+      document.getElementById("result").classList.remove("hidden");
+    }
+  </script>
+</body>
+</html>
