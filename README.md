@@ -21,7 +21,7 @@ A fun, visual personality quiz built using HTML, Tailwind CSS, and JavaScript - 
 
 ## 📸 Preview
 
-![Quiz Screenshot](./screenshot.png)
+![Quiz Screenshot](/Screenshot%202025-07-16%20154949.png)
 
 ---
 
